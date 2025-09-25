@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Eligibility Calculator 2026-27</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafc;
+      text-align: center;
+      padding: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 22px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 15px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Class Eligibility Calculator<br>Session 2026-27</h1>
+    <label for="dob">Enter Date of Birth:</label>
+    <input type="date" id="dob">
+    <button onclick="calculateClass()">Check Class</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateClass() {
+      const dob = new Date(document.getElementById("dob").value);
+      if (!dob) {
+        document.getElementById("result").innerText = "Please select a valid DOB.";
+        return;
+      }
+
+      // Define class ranges for cutoff dates
+      const ranges = [
+        {cls: "Nursery", start1: "2022-04-01", end1: "2023-03-31", start2: "2022-08-01", end2: "2023-07-31"},
+        {cls: "LKG",     start1: "2021-04-01", end1: "2022-03-31", start2: "2021-08-01", end2: "2022-07-31"},
+        {cls: "UKG",     start1: "2020-04-01", end1: "2021-03-31", start2: "2020-08-01", end2: "2021-07-31"},
+        {cls: "Class 1", start1: "2019-04-01", end1: "2020-03-31", start2: "2019-08-01", end2: "2020-07-31"},
+        {cls: "Class 2", start1: "2018-04-01", end1: "2019-03-31", start2: "2018-08-01", end2: "2019-07-31"},
+        {cls: "Class 3", start1: "2017-04-01", end1: "2018-03-31", start2: "2017-08-01", end2: "2018-07-31"},
+        {cls: "Class 4", start1: "2016-04-01", end1: "2017-03-31", start2: "2016-08-01", end2: "2017-07-31"},
+        {cls: "Class 5", start1: "2015-04-01", end1: "2016-03-31", start2: "2015-08-01", end2: "2016-07-31"},
+        {cls: "Class 6", start1: "2014-04-01", end1: "2015-03-31", start2: "2014-08-01", end2: "2015-07-31"},
+        {cls: "Class 7", start1: "2013-04-01", end1: "2014-03-31", start2: "2013-08-01", end2: "2014-07-31"},
+        {cls: "Class 8", start1: "2012-04-01", end1: "2013-03-31", start2: "2012-08-01", end2: "2013-07-31"},
+        {cls: "Class 9", start1: "2011-04-01", end1: "2012-03-31", start2: "2011-08-01", end2: "2012-07-31"},
+        {cls: "Class 10",start1: "2010-04-01", end1: "2011-03-31", start2: "2010-08-01", end2: "2011-07-31"},
+        {cls: "Class 11",start1: "2009-04-01", end1: "2010-03-31", start2: "2009-08-01", end2: "2010-07-31"},
+        {cls: "Class 12",start1: "2008-04-01", end1: "2009-03-31", start2: "2008-08-01", end2: "2009-07-31"}
+      ];
+
+      let classMarch = "Invalid Age";
+      let classJuly = "Invalid Age";
+
+      for (let r of ranges) {
+        let s1 = new Date(r.start1), e1 = new Date(r.end1);
+        let s2 = new Date(r.start2), e2 = new Date(r.end2);
+
+        if (dob >= s1 && dob <= e1) classMarch = r.cls;
+        if (dob >= s2 && dob <= e2) classJuly = r.cls;
+      }
+
+      document.getElementById("result").innerHTML = 
+        `👉 As on 31.03.2026: <b>${classMarch}</b><br>
+         👉 As on 31.07.2026: <b>${classJuly}</b>`;
+    }
+  </script>
+</body>
+</html>
